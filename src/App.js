@@ -7,7 +7,7 @@ import BordGame from "./BordGame";
 function App() {
   return (
     <div className="App">
-       <BordGame></BordGame>
+       <BordGame />
     </div>
   );
 }

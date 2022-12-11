@@ -9,42 +9,59 @@ const ColumnItem = (props) => {
         "bordItem circle", "bordItem circle",
         "bordItem circle", "bordItem circle"
     ]);
+
     const [dataColor, setDataColor] = useState([-1, -1, -1, -1, -1, -1])
     const [buttonPlace, setButtonPlace] = useState(ROW.length - 1);
-    const elementBord = getElements();
     const getUp = () => setButtonPlace(buttonPlace - 1);
     const set = () => {
-        getUp();
-        setClass(setColor());
+        if (buttonPlace >= 0) {
+            getUp();
+            setColor();
+            props.setIsClicked((perv) => !perv);
+            props.setActiveKey((perv) => [...perv, [props.column,buttonPlace]])
+        }
     }
     const setColor = () => {
-        setDataColor(props.turn);
+
         console.log(props.turn);
-        return props.turn % 2 === 1 ? "bordItem player1-circle" : "bordItem player2-circle";
-    }
-    const setClass = (name) => {
-        const newArr = className;
-        newArr[buttonPlace] = name;
-        setClassName(newArr);
+        let nDataColor = dataColor;
+        nDataColor[buttonPlace] = props.turn%2 ? 0 : 1;
+        setDataColor(nDataColor);
     }
 
-
-    function getElements() {
-        let array = [];
-        ROW.map((r) => array.push(BordItem({
-            dataColor: dataColor[r],
-            className: className[r],
-            column: props.column,
-            row: r
-        })));
-        return array;
+    const printColor = (r) => {
+        let result = "";
+        if(dataColor[r] === 0) {
+            result =  "bordItem player1-circle";
+        }else if(dataColor[r] == 1) {
+            result =  "bordItem player2-circle";
+        }else{
+            result = "bordItem circle";
+        }
+        return result;
     }
 
     return (
         <div className={"group"}>
-            <button className={props.column + "group"} onClick={ buttonPlace >= 0  && set }>Click here for this column
+            <button
+                className={props.column + "group"}
+                onClick={set}
+            >
+                Click here for this column
             </button>
-            {elementBord}
+            {
+                ROW.map((r, key) => {
+                    return (
+                        <BordItem
+                            key={key}
+                            dataColor={dataColor[r]}
+                            className={printColor(r)}
+                            column={props.column}
+                            row={r}
+                        />
+                    )
+                })
+            }
         </div>
     )
 }
