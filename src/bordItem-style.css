@@ -1,0 +1,51 @@
+body{
+    margin-top: 5%;
+    margin-left: 20%;
+    margin-right: 10%;
+}
+.paint {
+    color: antiquewhite;
+    background: cornflowerblue;
+}
+button{
+    width: 80px;
+    height: 70px;
+    background-color: cornflowerblue;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+
+}
+.rec {
+    width: 80px;
+    height: 70px;
+    background-color: cornflowerblue;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+.circle {
+    margin: 20%;
+    border-radius: 100%;
+    background: white;
+    width: 50px;
+    height: 50px;
+}
+.group{
+    position: relative;
+    float: left;
+}
+
+.player1-circle {
+    margin: 20%;
+    border-radius: 100%;
+    background: red;
+    width: 50px;
+    height: 50px;
+}
+
+.player2-circle {
+    margin: 20%;
+    border-radius: 100%;
+    background: yellow;
+    width: 50px;
+    height: 50px;
+}
